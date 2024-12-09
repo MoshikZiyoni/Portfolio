@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState,useEffect } from 'react';
-import { Home, Code, Briefcase, Award, Send, Download } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Home, Code, Briefcase, Award, Send, Download, Menu, X } from 'lucide-react';
 // import PDFViewer from './pdf-component';
 import MoshikResume from './Moshik-Ziony-CV.pdf'
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const themeColor = '#0A76F0';
 
   const cvDetails = {
     education: {
@@ -153,32 +156,32 @@ function App() {
             ))}
           </div>
         );
-        case 'cv':
-  return (
-    <div>
-      <h2 className="text-3xl font-bold mb-6">Professional CV</h2>
-      <div className="w-full h-[800px]">
-        <embed 
-          src={MoshikResume} 
-          type="application/pdf" 
-          width="100%" 
-          height="100%"
-          className="border-2 border-gray-200 rounded-lg shadow-md"
-        />
-      </div>
-      <div className="text-center mt-4">
-        
-        <a 
-          // href="./Moshik-Ziony-CV.pdf" 
-          href={MoshikResume} 
-          download 
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Download CV
-        </a>
-      </div>
-    </div>
-  );
+      case 'cv':
+        return (
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Professional CV</h2>
+            <div className="w-full h-[800px]">
+              <embed
+                src={MoshikResume}
+                type="application/pdf"
+                width="100%"
+                height="100%"
+                className="border-2 border-gray-200 rounded-lg shadow-md"
+              />
+            </div>
+            <div className="text-center mt-4">
+
+              <a
+                // href="./Moshik-Ziony-CV.pdf" 
+                href={MoshikResume}
+                download
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              >
+                Download CV
+              </a>
+            </div>
+          </div>
+        );
 
       case 'contact':
         return (
@@ -216,11 +219,28 @@ function App() {
 
 
   return (
+    
+    
+    
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <nav className="bg-white shadow-md">
+        <meta name="theme-color" content={themeColor} />
+    
+      <nav className="bg-white shadow-md relative">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Moshik Ziony</h1>
-          <div className="flex space-x-4">
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-600"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-4">
             <button
               onClick={() => setActiveSection('home')}
               className={`flex items-center space-x-2 ${activeSection === 'home' ? 'text-blue-600' : 'text-gray-600'}`}
@@ -257,13 +277,78 @@ function App() {
               <span>Contact</span>
             </button>
             <button
-              onClick={() => setActiveSection('cv')}
-              className={`flex items-center space-x-2 ${activeSection === 'cv' ? 'text-blue-600' : 'text-gray-600'}`}
-            >
-              <Download size={20} />
-              <span>CV</span>
-            </button>
+                  onClick={() => setActiveSection('cv')}
+                  className={`flex items-center space-x-2 ${activeSection === 'cv' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Download size={20} />
+                  <span>CV</span>
+                </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-white shadow-lg z-10 md:hidden">
+              <div className="flex flex-col items-center space-y-4 py-4">
+                <button
+                  onClick={() => {
+                    setActiveSection('home');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 ${activeSection === 'home' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Home size={20} />
+                  <span>Home</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection('experience');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 ${activeSection === 'experience' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Briefcase size={20} />
+                  <span>Experience</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection('skills');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 ${activeSection === 'skills' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Award size={20} />
+                  <span>Skills</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection('projects');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 ${activeSection === 'projects' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Code size={20} />
+                  <span>Projects</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveSection('contact');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 ${activeSection === 'contact' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Send size={20} />
+                  <span>Contact</span>
+                </button>
+                <button
+                  onClick={() => setActiveSection('cv')}
+                  className={`flex items-center space-x-2 ${activeSection === 'cv' ? 'text-blue-600' : 'text-gray-600'}`}
+                >
+                  <Download size={20} />
+                  <span>CV</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -275,8 +360,10 @@ function App() {
         <p className="text-gray-600">© 2024 Moshik Ziony. All Rights Reserved.</p>
       </footer>
     </div>
+    
   );
 };
 
 
 export default App;
+
