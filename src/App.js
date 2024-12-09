@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Home, Code, Briefcase, Award, Send, Download, Menu, X } from 'lucide-react';
-// import PDFViewer from './pdf-component';
 import MoshikResume from './Moshik-Ziony-CV.pdf'
-import { Helmet } from 'react-helmet';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
