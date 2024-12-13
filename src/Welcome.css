@@ -3,7 +3,7 @@
 /* Font face declaration - you may need to adjust the URL or use a different method to include the font */
 @font-face {
     font-family: 'AlteHaasGroteskBold';
-    src: url('http://edwardloveall.com/online/fonts/altehaasgroteskbold') format('truetype');
+    src: url('https://edwardloveall.com/online/fonts/altehaasgroteskbold') format('truetype');
 }
 
 :root {
