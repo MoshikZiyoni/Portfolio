@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { Home, Code, Briefcase, Award, Send, Download, Menu, X } from 'lucide-react';
 import MoshikResume from './Moshik-Ziony-CV.pdf'
+import Welcome from './Welcome';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -87,15 +88,17 @@ function App() {
     switch (activeSection) {
       case 'home':
         return (
-          <div className="text-center">
+          <div className="text-center" style={{background:"#101B1E" ,color:'white'}}>
             <h1 className="text-4xl font-bold mb-4">Moshik Ziony</h1>
-            <p className="text-xl text-gray-600">Full Stack Software Developer</p>
+            <p className="text-xl text-gray-600" style={{color:'#68BBCD'}}>Full Stack Software Developer</p>
             <p className="mt-4 max-w-2xl mx-auto">
               Experienced Full-Stack Developer specializing in Python-based development,
               machine learning, and cloud technologies. Proven track record of delivering
               high-performance applications with innovative problem-solving skills.
             </p>
+          <Welcome/>
           </div>
+          
         );
       case 'experience':
         return (
