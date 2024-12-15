@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { Home, Code, Briefcase, Award, Send, Download, Menu, X } from 'lucide-react';
 import MoshikResume from './Moshik-Ziony-CV.pdf'
 import Welcome from './Welcome';
+import Realestate from './real-estate.png';
+import Shopping from './shopping.png';
+import notes from './notes.png';
+import Winkee from './Winkee3.png';
+import Dreamtrip from './dream-trip.png';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -48,39 +53,44 @@ function App() {
   const skills = [
     'Python', 'React', 'Java', 'JavaScript', 'NodeJS', 'TypeScript',
     'Express.JS', 'Docker', 'REST API', 'AWS', 'Machine Learning',
-    'Automation', 'Multi-Threading'
+    'Automation', 'Multi-Threading', 'Selenium', 'Web design', 'HTML', 'CSS'
   ];
 
   const projects = [
     {
-      name: 'ChatMates-AI',
+      name: 'Winkee',
       description: 'Platform to improve dating conversations using OCR and AI',
-      url: 'https://chatmates-ai.com',
+      url: 'https://www.winkee.dating',
       technologies: ['Python', 'React', 'OCR', 'NLP', 'Django'],
+      image:  Winkee 
     },
     {
       name: 'Real-Estate Web App',
       description: 'Machine learning price prediction app using Linear Regression',
       url: 'https://moshik.pythonanywhere.com',
-      technologies: ['Django', 'scikit-learn', 'Machine Learning']
+      technologies: ['Django', 'scikit-learn', 'Machine Learning'],
+      image:  Realestate 
     },
     {
       name: 'Dream-Trip',
       description: 'Intelligent trip planning web application with AI optimization',
       url: 'https://fastidious-dango-3149de.netlify.app',
-      technologies: ['Django', 'React', 'AWS', 'Microservices']
+      technologies: ['Django', 'React', 'AWS', 'Microservices'],
+      image:  Dreamtrip 
     },
     {
       name: 'Shopping-web-app',
       description: 'Full-Stack Project REST-API that has full authentication with register. backend: Django Frontend: React',
       url: 'https://shopping-react.onrender.com',
-      technologies: ['PostgreSQL', 'GCP', 'Selenium', 'Python', 'Django']
+      technologies: ['PostgreSQL', 'GCP', 'Selenium', 'Python', 'Django'],
+      image:  Shopping 
     },
     {
       name: 'Notes Project',
       description: 'This project is a simple RESTful API for managing notes, built with Node.js, Express, TypeScript, and Prisma ORM.',
       url: 'https://node-express-typescript-notes-project-1.onrender.com',
-      technologies: ['Node.js', 'Express.js', 'TypeScript', 'Prisma ORM']
+      technologies: ['Node.js', 'Express.js', 'TypeScript', 'Prisma ORM'],
+      image:  notes 
     }
   ];
 
@@ -88,17 +98,18 @@ function App() {
     switch (activeSection) {
       case 'home':
         return (
-          <div className="text-center" style={{background:"#101B1E" ,color:'white'}}>
-            <h1 className="text-4xl font-bold mb-4">Moshik Ziony</h1>
-            <p className="text-xl text-gray-600" style={{color:'#68BBCD'}}>Full Stack Software Developer</p>
-            <p className="mt-4 max-w-2xl mx-auto">
-              Experienced Full-Stack Developer specializing in Python-based development,
-              machine learning, and cloud technologies. Proven track record of delivering
-              high-performance applications with innovative problem-solving skills.
-            </p>
-          <Welcome/>
-          </div>
-          
+          <>
+            <div className="text-center" style={{ background: "#101B1E", color: 'white', padding: '1rem' }}>
+              <h1 className="text-4xl font-bold mb-4">Moshik Ziony</h1>
+              <p className="text-xl text-gray-600" style={{ color: '#68BBCD' }}>Full Stack Software Developer</p>
+              <p className="mt-4 max-w-2xl mx-auto">
+                Experienced Full-Stack Developer specializing in Python-based development,
+                machine learning, and cloud technologies. Proven track record of delivering
+                high-performance applications with innovative problem-solving skills.
+              </p>
+              <Welcome />
+            </div>
+          </>
         );
       case 'experience':
         return (
@@ -142,6 +153,8 @@ function App() {
                 <h3 className="text-xl font-semibold">{project.name}</h3>
                 <p className="text-gray-600 mb-2">{project.description}</p>
                 <a href={project.url} target='_blank' className="text-gray-600 mb-2" style={{ color: 'blue' }}>{project.url}</a>
+                <img src={project.image} alt={project.name} className="mb-4" style={{width:'60%',maxHeight:'400px'}}/>
+
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, techIndex) => (
                     <span
@@ -150,6 +163,7 @@ function App() {
                     >
                       {tech}
                     </span>
+
                   ))}
                 </div>
               </div>
@@ -219,12 +233,12 @@ function App() {
 
 
   return (
-    
-    
-    
+
+
+
     <div className="min-h-screen bg-gray-50 flex flex-col">
-        <meta name="theme-color" content={themeColor} />
-    
+      <meta name="theme-color" content={themeColor} />
+
       <nav className="bg-white shadow-md relative">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Moshik Ziony</h1>
@@ -277,12 +291,12 @@ function App() {
               <span>Contact</span>
             </button>
             <button
-                  onClick={() => setActiveSection('cv')}
-                  className={`flex items-center space-x-2 ${activeSection === 'cv' ? 'text-blue-600' : 'text-gray-600'}`}
-                >
-                  <Download size={20} />
-                  <span>CV</span>
-                </button>
+              onClick={() => setActiveSection('cv')}
+              className={`flex items-center space-x-2 ${activeSection === 'cv' ? 'text-blue-600' : 'text-gray-600'}`}
+            >
+              <Download size={20} />
+              <span>CV</span>
+            </button>
           </div>
 
           {/* Mobile Navigation Menu */}
@@ -360,7 +374,7 @@ function App() {
         <p className="text-gray-600">© 2024 Moshik Ziony. All Rights Reserved.</p>
       </footer>
     </div>
-    
+
   );
 };
 
